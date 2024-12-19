@@ -1,0 +1,30 @@
+name: zig build test
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - '**.zig'
+      - '.github/workflows/zig-build-test.yml'
+
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - '**.zig'
+      - '.github/workflows/zig-build-test.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        zig-version: ["0.13.0", "mach-latest"]
+    
+    name: Build and Test
+    steps:
+      - uses: actions/checkout@v3
+      - uses: mlugg/setup-zig@v1
+        with:
+          version: ${{ matrix.zig-version }}
+      - run: zig build test
