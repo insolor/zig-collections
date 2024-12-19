@@ -1,10 +1,15 @@
 # Zig Collections
+[![zig build test](https://github.com/insolor/zig-collections/actions/workflows/zig-build-test.yml/badge.svg)](https://github.com/insolor/zig-collections/actions/workflows/zig-build-test.yml)
 
-Implementation of some common data structures in Zig. Inspired by Python's `collections` module.
+> [!NOTE] 
+> Tested on the current stable version of Zig (0.13.0 as of today) and on the latest [Mach Nominated Zig version](https://machengine.org/docs/nominated-zig/)
+
+Implementation of some useful data structures in Zig. Inspired by Python's `collections` module.
 
 TODO:
 
-- [x] Counter
+- [x] Counter:
+  - a minimal functionality is implemented: increment of a value of a key, counting of duplicate values from a slice or an iterator
 - [ ] defaultdict (DefaultHashMap)
 
 `Counter` usage examples:
