@@ -41,7 +41,7 @@ pub fn Counter(comptime T: type) type {
             }
         }
 
-        inline fn get(self: Counter(T), key: T) usize {
+        pub inline fn get(self: Counter(T), key: T) usize {
             return self.map.get(key) orelse 0;
         }
     };
