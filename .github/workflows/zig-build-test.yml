@@ -27,4 +27,11 @@ jobs:
       - uses: mlugg/setup-zig@v1
         with:
           version: ${{ matrix.zig-version }}
-      - run: zig build test
+      
+      - name: Run unit tests
+        run: zig build test
+      
+      - name: Run integration tests
+        run: |
+          cd tests
+          zig build test
