@@ -29,17 +29,22 @@ test "test add from iterator" {
     try expectEqual(1, counter.get("bob"));
 }
 
-const ArrayListFactory = struct {
-    allocator: std.mem.Allocator,
-
-    fn init(self: @This()) ArrayList(u8) {
-        return ArrayList(u8).init(self.allocator);
-    }
-};
-
 test "test defaulthashmap list" {
-    var map = collections.DefaultHashMap(u8, ArrayList(u8), test_allocator, ArrayList(u8).init)
-        .init(test_allocator);
+    const Factory = struct {
+        allocator: std.mem.Allocator,
+
+        fn produce(self: @This()) *ArrayList(u8) {
+            return ArrayList(u8).init(self.allocator);
+        }
+    };
+
+    const context = Factory{ .allocator = test_allocator };
+    var map = collections.DefaultHashMap(
+        u8,
+        ArrayList(u8),
+        context,
+        Factory.produce,
+    ).init(test_allocator);
 
     defer {
         map.deinitValues();

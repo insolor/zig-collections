@@ -47,7 +47,12 @@ pub fn Counter(comptime T: type) type {
     };
 }
 
-pub fn DefaultHashMap(comptime K: type, comptime V: type, comptime context: anytype, comptime default_factory: anytype) type {
+pub fn DefaultHashMap(
+    comptime K: type,
+    comptime V: type,
+    comptime context: anytype,
+    comptime default_factory: fn (@TypeOf(context)) *V,
+) type {
     return struct {
         const Self = @This();
 
