@@ -7,11 +7,11 @@
 
 Implementation of some useful data structures in Zig. Inspired by Python's `collections` module.
 
-TODO:
+Implemented so far:
 
-- [x] `Counter`:
+- ✅ `Counter`:
   - a minimal functionality is implemented: increment of a value of a key, counting of duplicate values from a slice or an iterator
-- [x] `defaultdict` (`DefaultHashMap`)
+- ✅ `defaultdict` (`DefaultHashMap`)
 
 `Counter` usage examples:
 
