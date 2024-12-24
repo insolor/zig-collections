@@ -51,7 +51,7 @@ pub fn DefaultHashMap(
     comptime K: type,
     comptime V: type,
     comptime context: anytype,
-    comptime default_factory: fn (@TypeOf(context)) *V,
+    comptime default_factory: fn (@TypeOf(context)) V,
 ) type {
     return struct {
         const Self = @This();
@@ -75,13 +75,15 @@ pub fn DefaultHashMap(
             self.map.deinit();
         }
 
-        pub inline fn get(self: Self, key: K) !*V {
-            var value: ?*V = self.map.getPtr(key);
-            if (value == null) {
-                value = default_factory(context);
-                self.map.put(key, value.?);
+        pub inline fn get(self: *Self, key: K) *V {
+            const value: ?*V = self.map.getPtr(key);
+            if (value) |v| {
+                return v;
             }
-            return value;
+
+            const new_value = default_factory(context);
+            self.map.put(key, new_value) catch unreachable;
+            return self.map.getPtr(key).?;
         }
     };
 }

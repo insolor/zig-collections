@@ -1,14 +1,15 @@
 const std = @import("std");
 const testing = std.testing;
 const expectEqual = testing.expectEqual;
+const expectEqualDeep = testing.expectEqualDeep;
 const ArrayList = std.ArrayList;
-const test_allocator = std.testing.allocator;
+const allocator = std.testing.allocator;
 
 const collections = @import("zig-collections");
 const Counter = collections.Counter;
 
 test "test add from slice" {
-    var counter = Counter(u8).init(test_allocator);
+    var counter = Counter(u8).init(allocator);
     defer counter.deinit();
 
     const array = [_]u8{ 1, 2, 2, 3, 3, 3 };
@@ -19,7 +20,7 @@ test "test add from slice" {
 }
 
 test "test add from iterator" {
-    var counter = Counter([]const u8).init(test_allocator);
+    var counter = Counter([]const u8).init(allocator);
     defer counter.deinit();
 
     const text = "alice bob alice";
@@ -33,18 +34,18 @@ test "test defaulthashmap list" {
     const Factory = struct {
         allocator: std.mem.Allocator,
 
-        fn produce(self: @This()) *ArrayList(u8) {
+        fn produce(self: @This()) ArrayList(u8) {
             return ArrayList(u8).init(self.allocator);
         }
     };
 
-    const context = Factory{ .allocator = test_allocator };
+    const context = Factory{ .allocator = allocator };
     var map = collections.DefaultHashMap(
         u8,
         ArrayList(u8),
         context,
         Factory.produce,
-    ).init(test_allocator);
+    ).init(allocator);
 
     defer {
         map.deinitValues();
@@ -55,6 +56,6 @@ test "test defaulthashmap list" {
     map.get(1).append(2) catch unreachable;
     map.get(2).append(3) catch unreachable;
 
-    try expectEqual(.{ 1, 2 }, map.get(1).items);
-    try expectEqual(.{3}, map.get(2).items);
+    try expectEqualDeep(&[_]u8{ 1, 2 }, map.get(1).items);
+    try expectEqualDeep(&[_]u8{3}, map.get(2).items);
 }

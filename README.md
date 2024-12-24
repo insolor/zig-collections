@@ -9,9 +9,9 @@ Implementation of some useful data structures in Zig. Inspired by Python's `coll
 
 TODO:
 
-- [x] Counter:
+- [x] `Counter`:
   - a minimal functionality is implemented: increment of a value of a key, counting of duplicate values from a slice or an iterator
-- [ ] defaultdict (DefaultHashMap)
+- [x] `defaultdict` (`DefaultHashMap`)
 
 `Counter` usage examples:
 
@@ -36,5 +36,39 @@ test "test add from iterator" {
     try counter.addFromIterator(&iterator);
     try expectEqual(2, counter.get("alice"));
     try expectEqual(1, counter.get("bob"));
+}
+```
+
+`DefaultHashMap` example:
+
+```zig
+test "test defaulthashmap list" {
+    const Factory = struct {
+        allocator: std.mem.Allocator,
+
+        fn produce(self: @This()) ArrayList(u8) {
+            return ArrayList(u8).init(self.allocator);
+        }
+    };
+
+    const context = Factory{ .allocator = allocator };
+    var map = collections.DefaultHashMap(
+        u8,
+        ArrayList(u8),
+        context,
+        Factory.produce,
+    ).init(allocator);
+
+    defer {
+        map.deinitValues();
+        map.deinit();
+    }
+
+    map.get(1).append(1) catch unreachable;
+    map.get(1).append(2) catch unreachable;
+    map.get(2).append(3) catch unreachable;
+
+    try expectEqualDeep(&[_]u8{ 1, 2 }, map.get(1).items);
+    try expectEqualDeep(&[_]u8{3}, map.get(2).items);
 }
 ```
