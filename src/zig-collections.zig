@@ -51,7 +51,7 @@ pub fn DefaultHashMap(
     comptime K: type,
     comptime V: type,
     comptime context: anytype,
-    comptime default_factory: fn (@TypeOf(context)) V,
+    comptime defaultFactory: fn (@TypeOf(context)) V,
 ) type {
     return struct {
         const Self = @This();
@@ -81,7 +81,7 @@ pub fn DefaultHashMap(
                 return v;
             }
 
-            const new_value = default_factory(context);
+            const new_value = defaultFactory(context);
             self.map.put(key, new_value) catch unreachable;
             return self.map.getPtr(key).?;
         }
