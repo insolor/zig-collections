@@ -15,7 +15,7 @@ Implementation of some useful data structures in Zig. Inspired by Python's `coll
     zig fetch --save https://github.com/insolor/zig-collections/archive/refs/heads/main.zip
     ```
 
-    Replace `main` in the URL with the tag or commit hash you want to use.
+    Replace `main` in the URL with the tag you want to use.
 
 2. Add zig-collections as a dependency module in your `build.zig` file, example:
 
