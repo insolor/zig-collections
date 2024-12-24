@@ -39,11 +39,10 @@ test "test defaulthashmap list" {
         }
     };
 
-    const context = Factory{ .allocator = allocator };
     var map = collections.DefaultHashMap(
         u8,
         ArrayList(u8),
-        context,
+        Factory{ .allocator = allocator },
         Factory.produce,
     ).init(allocator);
 
@@ -52,10 +51,12 @@ test "test defaulthashmap list" {
         map.deinit();
     }
 
-    map.get(1).append(1) catch unreachable;
-    map.get(1).append(2) catch unreachable;
-    map.get(2).append(3) catch unreachable;
+    const array = [_]u8{ 3, 3, 1, 2, 3, 2 };
+    for (array, 0..) |item, i| {
+        map.get(item).append(@intCast(i)) catch unreachable;
+    }
 
-    try expectEqualDeep(&[_]u8{ 1, 2 }, map.get(1).items);
-    try expectEqualDeep(&[_]u8{3}, map.get(2).items);
+    try expectEqualDeep(&[_]u8{2}, map.get(1).items);
+    try expectEqualDeep(&[_]u8{ 3, 5 }, map.get(2).items);
+    try expectEqualDeep(&[_]u8{ 0, 1, 4 }, map.get(3).items);
 }
