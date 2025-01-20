@@ -13,6 +13,9 @@ on:
       - '**.zig'
       - '.github/workflows/zig-build-test.yml'
 
+  schedule:
+    - cron: "0 0 * * Sat"
+
 jobs:
   test:
     runs-on: ubuntu-latest
