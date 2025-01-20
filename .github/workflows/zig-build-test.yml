@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        zig-version: ["0.13.0", "mach-latest"]
+        zig-version: ["0.13.0", "mach-latest", "master"]
     
     name: Build and Test
     steps:
