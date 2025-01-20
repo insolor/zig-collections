@@ -3,7 +3,7 @@
 [![zig build test](https://github.com/insolor/zig-collections/actions/workflows/zig-build-test.yml/badge.svg)](https://github.com/insolor/zig-collections/actions/workflows/zig-build-test.yml)
 
 > [!NOTE] 
-> Tested on the current stable version of Zig (0.13.0 as of today) and on the latest [Mach Nominated Zig version](https://machengine.org/docs/nominated-zig/)
+> Tested on the current stable version of Zig (0.13.0 as of today), the latest [Mach Nominated Zig version](https://machengine.org/docs/nominated-zig/) and the master branch of Zig.
 
 Implementation of some useful data structures in Zig. Inspired by Python's `collections` module.
 
