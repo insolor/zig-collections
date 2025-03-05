@@ -10,7 +10,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    const zig_collections = b.dependency("zig-collections", .{});
+    const zig_collections = b.dependency("zig_collections", .{});
     integration_tests.root_module.addImport("zig-collections", zig_collections.module("zig-collections"));
 
     const run_lib_unit_tests = b.addRunArtifact(integration_tests);

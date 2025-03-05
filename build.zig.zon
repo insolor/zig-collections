@@ -1,8 +1,8 @@
 .{
-    .name = "zig-collections",
+    .name = .zig_collections,
 
-    .version = "0.0.1",
-
+    .version = "0.0.2",
+    .fingerprint = 0x11c6af4dad05c0c7,
     .dependencies = .{},
 
     .paths = .{
