@@ -11,7 +11,7 @@ pub fn build(b: *std.Build) void {
     });
 
     const zig_collections = b.dependency("zig_collections", .{});
-    integration_tests.root_module.addImport("zig-collections", zig_collections.module("zig-collections"));
+    integration_tests.root_module.addImport("zig_collections", zig_collections.module("zig_collections"));
 
     const run_lib_unit_tests = b.addRunArtifact(integration_tests);
 

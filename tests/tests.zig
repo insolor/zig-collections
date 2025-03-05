@@ -5,7 +5,7 @@ const expectEqualDeep = testing.expectEqualDeep;
 const ArrayList = std.ArrayList;
 const allocator = std.testing.allocator;
 
-const collections = @import("zig-collections");
+const collections = @import("zig_collections");
 const Counter = collections.Counter;
 
 test "test add from slice" {

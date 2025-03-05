@@ -4,8 +4,8 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const zig_collections = b.addModule("zig-collections", .{
-        .root_source_file = b.path("src/zig-collections.zig"),
+    const zig_collections = b.addModule("zig_collections", .{
+        .root_source_file = b.path("src/zig_collections.zig"),
         .target = target,
         .optimize = optimize,
     });
@@ -16,7 +16,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    lib_tests.root_module.addImport("zig-collections", zig_collections);
+    lib_tests.root_module.addImport("zig_collections", zig_collections);
 
     const run_unit_tests = b.addRunArtifact(lib_tests);
 

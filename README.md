@@ -6,7 +6,7 @@ Implementation of some useful data structures in Zig. Inspired by Python's `coll
 
 ## Installation
 
-1. In the root directory of your project, run the following command to add `zig-collections` to your `build.zig.zon` file:
+1. In the root directory of your project, run the following command to add `zig_collections` to your `build.zig.zon` file:
 
     ```bash
     zig fetch --save https://github.com/insolor/zig-collections/archive/refs/heads/main.zip
@@ -14,17 +14,17 @@ Implementation of some useful data structures in Zig. Inspired by Python's `coll
 
     Replace `main` in the URL with the tag you want to use.
 
-2. Add zig-collections as a dependency module in your `build.zig` file, example:
+2. Add zig_collections as a dependency module in your `build.zig` file, example:
 
     ```zig
     const zig_collections = b.dependency("zig_collections", .{});
-    exe.root_module.addImport("zig-collections", zig_collections.module("zig-collections"));
+    exe.root_module.addImport("zig_collections", zig_collections.module("zig_collections"));
     ```
 
-After that, you'll be able to import `zig-collections` namespace from your code:
+After that, you'll be able to import `zig_collections` namespace from your code:
 
 ```zig
-const zig_collections = @import("zig-collections");
+const zig_collections = @import("zig_collections");
 const Counter = zig_collections.Counter;
 const DefaultHashMap = zig_collections.DefaultHashMap;
 ```
