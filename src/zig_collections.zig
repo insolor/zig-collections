@@ -61,7 +61,7 @@ pub fn DefaultHashMap(
             };
         }
 
-        pub inline fn deinitValues(self: *Self) void {
+        inline fn deinitValues(self: *Self) void {
             var value_iterator = self.map.valueIterator();
             while (value_iterator.next()) |positions| {
                 positions.deinit();
@@ -69,6 +69,7 @@ pub fn DefaultHashMap(
         }
 
         pub inline fn deinit(self: *Self) void {
+            self.deinitValues();
             self.map.deinit();
         }
 

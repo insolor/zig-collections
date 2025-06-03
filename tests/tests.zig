@@ -46,10 +46,7 @@ test "test defaulthashmap list" {
         Factory.produce,
     ).init(allocator);
 
-    defer {
-        map.deinitValues();
-        map.deinit();
-    }
+    defer map.deinit();
 
     const array = [_]u8{ 3, 3, 1, 2, 3, 2 };
     for (array, 0..) |item, i| {
