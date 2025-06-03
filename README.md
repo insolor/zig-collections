@@ -56,7 +56,7 @@ test "test add from iterator" {
     defer counter.deinit();
 
     const text = "alice bob alice";
-    var iterator = std.mem.splitSequence(u8, text, " ");
+    var iterator = std.mem.splitScalar(u8, text, ' ');
     try counter.addFromIterator(&iterator);
     try expectEqual(2, counter.get("alice"));
     try expectEqual(1, counter.get("bob"));
