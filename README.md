@@ -37,7 +37,7 @@ Implemented so far:
   - a minimal functionality is implemented: increment of a value of a key, counting of duplicate values from a slice or an iterator
 - ✅ `defaultdict` (`DefaultHashMap`)
 
-`Counter` usage examples:
+### `Counter` usage examples
 
 ```zig
 test "test add from slice" {
@@ -63,7 +63,7 @@ test "test add from iterator" {
 }
 ```
 
-`DefaultHashMap` example:
+### `DefaultHashMap` example
 
 ```zig
 test "test defaulthashmap list" {
@@ -93,4 +93,20 @@ test "test defaulthashmap list" {
     try expectEqualDeep(&[_]u8{ 3, 5 }, map.get(2).items);
     try expectEqualDeep(&[_]u8{ 0, 1, 4 }, map.get(3).items);
 }
+```
+
+Corresponding Python code:
+
+```python
+from collections import defaultdict
+
+dmap = defaultdict(list)
+
+array = [3, 3, 1, 2, 3, 2]
+for i, item in enumerate(array):
+    dmap[item].append(i)
+
+assert [2] == dmap[1]
+assert [3, 5] == dmap[2]
+assert [0, 1, 4] == dmap[3]
 ```
