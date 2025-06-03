@@ -53,7 +53,7 @@ test "test defaulthashmap list" {
 
     const array = [_]u8{ 3, 3, 1, 2, 3, 2 };
     for (array, 0..) |item, i| {
-        map.get(item).append(@intCast(i)) catch unreachable;
+        try map.get(item).append(@intCast(i));
     }
 
     try expectEqualDeep(&[_]u8{2}, map.get(1).items);
