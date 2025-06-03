@@ -1,9 +1,6 @@
 const std = @import("std");
-const testing = std.testing;
-const expectEqual = testing.expectEqual;
 const AutoHashMap = std.AutoHashMap;
 const StringHashMap = std.StringHashMap;
-const HashMap = std.HashMap;
 const Allocator = std.mem.Allocator;
 
 fn CounterMapType(comptime T: type) type {
