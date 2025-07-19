@@ -67,7 +67,7 @@ test "test add from iterator" {
 
 ```zig
 test "test defaulthashmap list" {
-    const Factory = struct {
+    const EmptyArrayListFactory = struct {
         allocator: std.mem.Allocator,
 
         fn produce(self: @This()) ArrayList(u8) {
@@ -78,8 +78,8 @@ test "test defaulthashmap list" {
     var map = collections.DefaultHashMap(
         u8,
         ArrayList(u8),
-        Factory{ .allocator = allocator },
-        Factory.produce,
+        EmptyArrayListFactory{ .allocator = allocator },
+        EmptyArrayListFactory.produce,
     ).init(allocator);
 
     defer map.deinit();
