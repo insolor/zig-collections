@@ -8,7 +8,7 @@ fn CounterMapType(comptime T: type) type {
 }
 
 /// Generic counter collection for counting occurrences of elements.
-/// For string keys ([]const u8), uses optimized StringHashMap.
+/// For string keys ([]const u8), uses StringHashMap internally.
 /// For other types, uses general-purpose AutoHashMap.
 /// Factory function must be compatible with the context parameter type.
 pub fn Counter(comptime T: type) type {
