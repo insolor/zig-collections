@@ -4,11 +4,13 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const integration_tests = b.addTest(.{
+    const test_module = b.addModule("zig_collections_test", .{
         .root_source_file = b.path("tests.zig"),
         .target = target,
         .optimize = optimize,
     });
+
+    const integration_tests = b.addTest(.{ .root_module = test_module });
 
     const zig_collections = b.dependency("zig_collections", .{});
     integration_tests.root_module.addImport("zig_collections", zig_collections.module("zig_collections"));
