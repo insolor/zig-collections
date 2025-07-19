@@ -8,7 +8,7 @@ const allocator = std.testing.allocator;
 const collections = @import("zig_collections");
 const Counter = collections.Counter;
 
-test "test add from slice" {
+test "add from slice" {
     var counter = Counter(u8).init(allocator);
     defer counter.deinit();
 
@@ -19,7 +19,7 @@ test "test add from slice" {
     try expectEqual(3, counter.get(3));
 }
 
-test "test add from iterator" {
+test "add from iterator" {
     var counter = Counter([]const u8).init(allocator);
     defer counter.deinit();
 
@@ -30,7 +30,7 @@ test "test add from iterator" {
     try expectEqual(1, counter.get("bob"));
 }
 
-test "test defaulthashmap list" {
+test "DefaultHashMap with list" {
     const EmptyArrayListFactory = struct {
         allocator: std.mem.Allocator,
 

@@ -40,7 +40,7 @@ Implemented so far:
 ### `Counter` usage examples
 
 ```zig
-test "test add from slice" {
+test "add from slice" {
     var counter = Counter(u8).init(allocator);
     defer counter.deinit();
 
@@ -51,7 +51,7 @@ test "test add from slice" {
     try expectEqual(3, counter.get(3));
 }
 
-test "test add from iterator" {
+test "add from iterator" {
     var counter = Counter([]const u8).init(allocator);
     defer counter.deinit();
 
@@ -66,7 +66,7 @@ test "test add from iterator" {
 ### `DefaultHashMap` example
 
 ```zig
-test "test defaulthashmap list" {
+test "DefaultHashMap with list" {
     const EmptyArrayListFactory = struct {
         allocator: std.mem.Allocator,
 
