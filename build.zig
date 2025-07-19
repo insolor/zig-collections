@@ -10,11 +10,13 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    const lib_tests = b.addTest(.{
+    const test_module = b.addModule("zig_collections_test", .{
         .root_source_file = b.path("tests/tests.zig"),
         .target = target,
         .optimize = optimize,
     });
+
+    const lib_tests = b.addTest(.{ .root_module = test_module });
 
     lib_tests.root_module.addImport("zig_collections", zig_collections);
 

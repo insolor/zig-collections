@@ -25,7 +25,7 @@ jobs:
         zig-version: 
           - "0.14.0"
           - "0.14.1"
-          # - master
+          - master
     
     name: Build and Test
     steps:
