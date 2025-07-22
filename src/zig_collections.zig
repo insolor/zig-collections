@@ -8,8 +8,8 @@ fn CounterMapType(comptime T: type) type {
 }
 
 /// Generic counter collection for counting occurrences of elements.
-/// For string keys ([]const u8), uses StringHashMap internally.
-/// For other types, uses general-purpose AutoHashMap.
+/// For string keys (`[]const u8`), uses `StringHashMap` internally.
+/// For other types, uses general-purpose `AutoHashMap`.
 pub fn Counter(comptime T: type) type {
     return struct {
         map: CounterMapType(T),
