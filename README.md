@@ -1,6 +1,8 @@
 # Zig Collections
 
-![Zig 0.14.0](https://img.shields.io/badge/Zig-0.14.0-orange) [![zig build test](https://github.com/insolor/zig-collections/actions/workflows/zig-build-test.yml/badge.svg)](https://github.com/insolor/zig-collections/actions/workflows/zig-build-test.yml)
+![Zig 0.14.0](https://img.shields.io/badge/Zig-0.14.0-orange)
+[![zig build test](https://github.com/insolor/zig-collections/actions/workflows/zig-build-test.yml/badge.svg)](https://github.com/insolor/zig-collections/actions/workflows/zig-build-test.yml)
+[![documentation](https://img.shields.io/badge/docs-mkdocs-708FCC.svg?style=flat)](https://insolor.github.io/zig-collections/)
 
 Implementation of some useful data structures in Zig. Inspired by Python's `collections` module.
 
