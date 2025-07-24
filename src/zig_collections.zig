@@ -14,40 +14,42 @@ pub fn Counter(comptime T: type) type {
     return struct {
         map: CounterMapType(T),
 
+        const Self = @This();
+    
         /// Creates new counter with given allocator
-        pub inline fn init(allocator: Allocator) Counter(T) {
-            return Counter(T){
+        pub inline fn init(allocator: Allocator) Self {
+            return .{
                 .map = CounterMapType(T).init(allocator),
             };
         }
 
         /// Frees all allocated memory
-        pub inline fn deinit(self: *Counter(T)) void {
+        pub inline fn deinit(self: *Self) void {
             self.map.deinit();
         }
 
         /// Increments count for item by 1
-        pub inline fn inc(self: *Counter(T), item: T) !void {
+        pub inline fn inc(self: *Self, item: T) !void {
             const value = self.map.get(item) orelse 0;
             try self.map.put(item, value + 1);
         }
 
         /// Counts all items in slice
-        pub inline fn addFromSlice(self: *Counter(T), slice: []const T) !void {
+        pub inline fn addFromSlice(self: *Self, slice: []const T) !void {
             for (slice) |item| {
                 try self.inc(item);
             }
         }
 
         /// Counts all items from iterator
-        pub inline fn addFromIterator(self: *Counter(T), iterator: anytype) !void {
+        pub inline fn addFromIterator(self: *Self, iterator: anytype) !void {
             while (iterator.next()) |item| {
                 try self.inc(item);
             }
         }
 
         /// Returns current count for key (0 if not present)
-        pub inline fn get(self: Counter(T), key: T) usize {
+        pub inline fn get(self: Self, key: T) usize {
             return self.map.get(key) orelse 0;
         }
     };
