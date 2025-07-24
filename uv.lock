@@ -327,16 +327,16 @@ wheels = [
 
 [[package]]
 name = "mkdocstrings-zig"
-version = "0.0.4"
+version = "0.0.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "mkdocstrings" },
     { name = "tree-sitter" },
     { name = "tree-sitter-zig" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ea/b6/5f5387e098b3ac35328ba286b464bb8e2c9890bad2b18fbe5f5a03e0c094/mkdocstrings_zig-0.0.4.tar.gz", hash = "sha256:0e8c3721b5ea2fba9130eb55b02914eb6342dcbe82d6a07b1da563a075de07b7", size = 37335, upload-time = "2025-07-23T17:43:21.59Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3e/3f/1cdc0fcbf1855b96086f37de2719736ad309f6834dab8dc3844725f6a3fa/mkdocstrings_zig-0.0.6.tar.gz", hash = "sha256:dad4ae55db886d8888a47c7fecab5dc0eb39b55b35be4929237f279194815032", size = 38112, upload-time = "2025-07-24T15:09:29.4Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/03/bd/66c5410d46c5e93cffe7ef237a6d6355c8049aaea01770fb27f1d7608104/mkdocstrings_zig-0.0.4-py3-none-any.whl", hash = "sha256:047abccbcedd261adce69729583aac3c762ad66fa282abed55ced3bf58678541", size = 16345, upload-time = "2025-07-23T17:43:20.505Z" },
+    { url = "https://files.pythonhosted.org/packages/e0/31/bbe08abf124dc148edff6fbdeee02c00e9982af9579a8695027d3ce820d8/mkdocstrings_zig-0.0.6-py3-none-any.whl", hash = "sha256:226162848cf581eca404cbb4120bcaaf2b8d0c25f4eda6ed74e6af7266010445", size = 18952, upload-time = "2025-07-24T15:09:28.037Z" },
 ]
 
 [[package]]
@@ -605,6 +605,6 @@ dependencies = [
 requires-dist = [
     { name = "mkdocs-material", specifier = ">=9.6.15" },
     { name = "mkdocstrings", specifier = ">=0.29.1" },
-    { name = "mkdocstrings-zig", specifier = ">=0.0.4" },
+    { name = "mkdocstrings-zig", specifier = ">=0.0.6" },
     { name = "typing-extensions", specifier = ">=4.14.1" },
 ]
