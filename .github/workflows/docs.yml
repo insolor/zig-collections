@@ -19,7 +19,7 @@ jobs:
           python-version: 3.x
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v6
 
       - name: Deploy docs
         run: uv run mkdocs gh-deploy --force
