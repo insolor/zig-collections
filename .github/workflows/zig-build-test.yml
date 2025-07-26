@@ -33,7 +33,13 @@ jobs:
       - uses: mlugg/setup-zig@v2
         with:
           version: ${{ matrix.zig-version }}
-      
+
+      - name: Run linter
+        run: |
+          wget https://github.com/DonIsaac/zlint/releases/download/v0.7.9/zlint-linux-x86_64 -O zlint
+          chmod +x zlint
+          ./zlint
+
       - name: Run unit tests
         run: zig build test
       
