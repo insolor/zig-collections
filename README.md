@@ -8,10 +8,10 @@ Implementation of some useful data structures in Zig. Inspired by Python's `coll
 
 ## Installation
 
-1. In the root directory of your project, run the following command to add `zig_collections` to your `build.zig.zon` file:
+1. In the root directory of your project, run the following command to add `zig_collections` to your `build.zig.zon` file (replace 0.0.2 with the latest release number):
 
     ```bash
-    zig fetch --save https://github.com/insolor/zig-collections/archive/refs/heads/main.zip
+    zig fetch --save https://github.com/insolor/zig-collections/archive/refs/tags/0.0.2.zip
     ```
 
     Replace `main` in the URL with the tag you want to use.
