@@ -15,7 +15,7 @@ pub fn Counter(comptime T: type) type {
         map: CounterMapType(T),
 
         const Self = @This();
-    
+
         /// Creates new counter with given allocator
         pub inline fn init(allocator: Allocator) Self {
             return .{
@@ -96,7 +96,8 @@ pub fn DefaultHashMap(
             }
 
             const new_value = defaultFactory(context);
-            self.map.put(key, new_value) catch unreachable;
+            self.map.put(key, new_value) catch
+                @panic("Error duting putting a defalut value to DefaultHashMap");
             return self.map.getPtr(key).?;
         }
     };
