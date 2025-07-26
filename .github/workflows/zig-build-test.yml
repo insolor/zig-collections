@@ -38,7 +38,7 @@ jobs:
         run: |
           wget https://github.com/DonIsaac/zlint/releases/download/v0.7.9/zlint-linux-x86_64 -O zlint
           chmod +x zlint
-          ./zlint
+          ./zlint --deny-warnings
 
       - name: Run unit tests
         run: zig build test
