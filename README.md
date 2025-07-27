@@ -4,7 +4,7 @@
 [![zig build test](https://github.com/insolor/zig-collections/actions/workflows/zig-build-test.yml/badge.svg)](https://github.com/insolor/zig-collections/actions/workflows/zig-build-test.yml)
 [![documentation](https://img.shields.io/badge/docs-mkdocs-708FCC.svg?style=flat)](https://insolor.github.io/zig-collections/)
 
-Implementation of some useful data structures in Zig. Inspired by Python's `collections` module.
+Implementation of some useful data structures in Zig. Inspired by Python's [`collections`](https://docs.python.org/3/library/collections.html) module.
 
 ## Installation
 
