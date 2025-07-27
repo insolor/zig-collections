@@ -21,7 +21,7 @@ jobs:
       - name: Fetch version from build.zig.zon
         id: fetch_version
         run: |
-          echo VERSION=$(python ci/get_version.py) >> $GITHUB_ENV
+          echo version=$(python ci/get_version.py) >> $GITHUB_OUTPUT
 
       - name: Release
         uses: softprops/action-gh-release@v2
