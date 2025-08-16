@@ -2,7 +2,7 @@ const std = @import("std");
 const testing = std.testing;
 const expectEqual = testing.expectEqual;
 const expectEqualDeep = testing.expectEqualDeep;
-const ArrayList = std.ArrayList;
+const ArrayList = if (@hasDecl(std, "array_list")) std.array_list.Managed else std.ArrayList;
 const allocator = std.testing.allocator;
 
 const collections = @import("zig_collections");
