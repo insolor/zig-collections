@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - '**.zig'
-      - 'build.zig.zon'
+      - '**/build.zig.zon'
       - '.github/workflows/zig-build-test.yml'
 
   pull_request:
@@ -14,7 +14,7 @@ on:
       - main
     paths:
       - '**.zig'
-      - 'build.zig.zon'
+      - '**/build.zig.zon'
       - '.github/workflows/zig-build-test.yml'
 
   schedule:
