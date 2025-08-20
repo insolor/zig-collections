@@ -2,15 +2,19 @@ name: zig build test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: 
+      - main
     paths:
       - '**.zig'
+      - 'build.zig.zon'
       - '.github/workflows/zig-build-test.yml'
 
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
     paths:
       - '**.zig'
+      - 'build.zig.zon'
       - '.github/workflows/zig-build-test.yml'
 
   schedule:
@@ -25,8 +29,9 @@ jobs:
         zig-version: 
           - "0.14.0"
           - "0.14.1"
+          - "0.15.1"
           - master
-    
+
     name: Build and Test
     steps:
       - uses: actions/checkout@v4
