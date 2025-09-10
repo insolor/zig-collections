@@ -9,8 +9,6 @@ const allocator = std.testing.allocator;
 const collections = @import("zig_collections");
 const Counter = collections.Counter;
 
-const _ = ArrayListUnmanaged;  // FIXME
-
 test "add from slice" {
     var counter = Counter(u8).init(allocator);
     defer counter.deinit();
@@ -86,4 +84,3 @@ test "DefaultHashMap with unmanaged array list" {
     try expectEqualDeep(&[_]u8{ 3, 5 }, map.get(2).items);
     try expectEqualDeep(&[_]u8{ 0, 1, 4 }, map.get(3).items);
 }
-
