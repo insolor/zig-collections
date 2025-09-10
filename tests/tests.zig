@@ -60,3 +60,30 @@ test "DefaultHashMap with list" {
     try expectEqualDeep(&[_]u8{ 3, 5 }, map.get(2).items);
     try expectEqualDeep(&[_]u8{ 0, 1, 4 }, map.get(3).items);
 }
+
+test "DefaultHashMap with unmanaged array list" {
+    const EmptyArrayListFactory = struct {
+        fn produce(_: @This()) ArrayListUnmanaged(u8) {
+            return .empty;
+        }
+    };
+
+    var map = collections.DefaultHashMap(
+        u8,
+        ArrayListUnmanaged(u8),
+        EmptyArrayListFactory{},
+        EmptyArrayListFactory.produce,
+    ).init(allocator);
+
+    defer map.deinitUnmanaged(allocator);
+
+    const array = [_]u8{ 3, 3, 1, 2, 3, 2 };
+    for (array, 0..) |item, i| {
+        try map.get(item).append(allocator, @intCast(i));
+    }
+
+    try expectEqualDeep(&[_]u8{2}, map.get(1).items);
+    try expectEqualDeep(&[_]u8{ 3, 5 }, map.get(2).items);
+    try expectEqualDeep(&[_]u8{ 0, 1, 4 }, map.get(3).items);
+}
+
