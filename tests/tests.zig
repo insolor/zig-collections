@@ -9,6 +9,8 @@ const allocator = std.testing.allocator;
 const collections = @import("zig_collections");
 const Counter = collections.Counter;
 
+const _ = ArrayListUnmanaged;  // FIXME
+
 test "add from slice" {
     var counter = Counter(u8).init(allocator);
     defer counter.deinit();
