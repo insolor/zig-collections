@@ -2,7 +2,8 @@ const std = @import("std");
 const testing = std.testing;
 const expectEqual = testing.expectEqual;
 const expectEqualDeep = testing.expectEqualDeep;
-const ArrayList = if (@hasDecl(std, "array_list")) std.array_list.Managed else std.ArrayList;
+const ArrayListManaged = if (@hasDecl(std, "array_list")) std.array_list.Managed else std.ArrayList;
+const ArrayListUnmanaged = if (@hasDecl(std, "ArrayListUnmanaged")) std.ArrayListUnmanaged else std.ArrayList;
 const allocator = std.testing.allocator;
 
 const collections = @import("zig_collections");
@@ -34,14 +35,14 @@ test "DefaultHashMap with list" {
     const EmptyArrayListFactory = struct {
         allocator: std.mem.Allocator,
 
-        fn produce(self: @This()) ArrayList(u8) {
-            return ArrayList(u8).init(self.allocator);
+        fn produce(self: @This()) ArrayListManaged(u8) {
+            return ArrayListManaged(u8).init(self.allocator);
         }
     };
 
     var map = collections.DefaultHashMap(
         u8,
-        ArrayList(u8),
+        ArrayListManaged(u8),
         EmptyArrayListFactory{ .allocator = allocator },
         EmptyArrayListFactory.produce,
     ).init(allocator);
