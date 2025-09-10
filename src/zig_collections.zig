@@ -82,9 +82,23 @@ pub fn DefaultHashMap(
             }
         }
 
+        /// Deinitializes values of the map (where values are unmanaged structures). Do not use directly.
+        inline fn deinitValuesUnmanaged(self: *Self, allocator: std.mem.Allocator) void {
+            var value_iterator = self.map.valueIterator();
+            while (value_iterator.next()) |positions| {
+                positions.deinit(allocator);
+            }
+        }
+
         /// Properly deinitializes map and all values
         pub inline fn deinit(self: *Self) void {
             self.deinitValues();
+            self.map.deinit();
+        }
+
+        /// Properly deinitializes map and all values (where values are unmanaged structures)
+        pub inline fn deinitUnmanaged(self: *Self, allocator: std.mem.Allocator) void {
+            self.deinitValuesUnmanaged(allocator);
             self.map.deinit();
         }
 

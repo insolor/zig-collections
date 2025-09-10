@@ -2,7 +2,8 @@ const std = @import("std");
 const testing = std.testing;
 const expectEqual = testing.expectEqual;
 const expectEqualDeep = testing.expectEqualDeep;
-const ArrayList = if (@hasDecl(std, "array_list")) std.array_list.Managed else std.ArrayList;
+const ArrayListManaged = if (@hasDecl(std, "array_list")) std.array_list.Managed else std.ArrayList;
+const ArrayListUnmanaged = if (@hasDecl(std, "ArrayListUnmanaged")) std.ArrayListUnmanaged else std.ArrayList;
 const allocator = std.testing.allocator;
 
 const collections = @import("zig_collections");
@@ -34,14 +35,14 @@ test "DefaultHashMap with list" {
     const EmptyArrayListFactory = struct {
         allocator: std.mem.Allocator,
 
-        fn produce(self: @This()) ArrayList(u8) {
-            return ArrayList(u8).init(self.allocator);
+        fn produce(self: @This()) ArrayListManaged(u8) {
+            return ArrayListManaged(u8).init(self.allocator);
         }
     };
 
     var map = collections.DefaultHashMap(
         u8,
-        ArrayList(u8),
+        ArrayListManaged(u8),
         EmptyArrayListFactory{ .allocator = allocator },
         EmptyArrayListFactory.produce,
     ).init(allocator);
@@ -51,6 +52,32 @@ test "DefaultHashMap with list" {
     const array = [_]u8{ 3, 3, 1, 2, 3, 2 };
     for (array, 0..) |item, i| {
         try map.get(item).append(@intCast(i));
+    }
+
+    try expectEqualDeep(&[_]u8{2}, map.get(1).items);
+    try expectEqualDeep(&[_]u8{ 3, 5 }, map.get(2).items);
+    try expectEqualDeep(&[_]u8{ 0, 1, 4 }, map.get(3).items);
+}
+
+test "DefaultHashMap with unmanaged array list" {
+    const EmptyArrayListFactory = struct {
+        fn produce(_: @This()) ArrayListUnmanaged(u8) {
+            return .empty;
+        }
+    };
+
+    var map = collections.DefaultHashMap(
+        u8,
+        ArrayListUnmanaged(u8),
+        EmptyArrayListFactory{},
+        EmptyArrayListFactory.produce,
+    ).init(allocator);
+
+    defer map.deinitUnmanaged(allocator);
+
+    const array = [_]u8{ 3, 3, 1, 2, 3, 2 };
+    for (array, 0..) |item, i| {
+        try map.get(item).append(allocator, @intCast(i));
     }
 
     try expectEqualDeep(&[_]u8{2}, map.get(1).items);
