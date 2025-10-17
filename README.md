@@ -1,6 +1,6 @@
 # Zig Collections
 
-[![Zig 0.14.0, 0.14.1, 0.15.1, master](https://img.shields.io/badge/Zig-0.14.0%20%7C%200.14.1%20%7C%200.15.1%20%7C%20master-color?logo=zig&color=%23f3ab20)](https://github.com/ziglang/zig) <!-- see zig tag examples at https://github.com/KurtWagner/what-the-zig -->
+[![Zig 0.14.0, 0.14.1, 0.15.1, 0.15.2, master](https://img.shields.io/badge/Zig-0.14.0%20%7C%200.14.1%20%7C%200.15.1%20%7C%200.15.2%20%7C%20master-color?logo=zig&color=%23f3ab20)](https://github.com/ziglang/zig) <!-- see zig tag examples at https://github.com/KurtWagner/what-the-zig -->
 [![zig build test](https://github.com/insolor/zig-collections/actions/workflows/zig-build-test.yml/badge.svg)](https://github.com/insolor/zig-collections/actions/workflows/zig-build-test.yml)
 [![documentation](https://img.shields.io/badge/docs-mkdocs-708FCC.svg?style=flat)](https://insolor.github.io/zig-collections/)
 
