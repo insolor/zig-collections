@@ -9,4 +9,4 @@ match = re.search(r"\.version\s*=\s*\"([\d\.]+)\"", build_zig_zon_content)
 if not match:
     raise ValueError("Faild to get get version from build.zig.zon")
 
-print(match.group())
+print(match.group(1))
