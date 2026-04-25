@@ -38,7 +38,6 @@ jobs:
       - name: Fetch version from build.zig.zon
         id: fetch_version
         run: |
-          ls
           python ci/get_version.py
           echo version=$(python ci/get_version.py) >> $GITHUB_OUTPUT
 
