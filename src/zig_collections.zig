@@ -55,6 +55,10 @@ pub fn Counter(comptime T: type) type {
     };
 }
 
+fn DefaultHashMapType(comptime K: type, comptime V: type) type {
+    return if (K == []const u8) StringHashMap(V) else AutoHashMap(K, V);
+}
+
 /// Auto-initializing map with default value factory.
 pub fn DefaultHashMap(
     comptime K: type,
@@ -65,12 +69,12 @@ pub fn DefaultHashMap(
     return struct {
         const Self = @This();
 
-        map: AutoHashMap(K, V),
+        map: DefaultHashMapType(K, V),
 
         /// Creates new map with given allocator
         pub inline fn init(allocator: Allocator) Self {
             return .{
-                .map = AutoHashMap(K, V).init(allocator),
+                .map = DefaultHashMapType(K, V).init(allocator),
             };
         }
 
