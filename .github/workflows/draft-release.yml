@@ -2,6 +2,23 @@ name: Draft release
 
 on:
   workflow_dispatch:
+  push:
+    branches: 
+      - main
+    paths:
+      - '**.zig'
+      - '**/build.zig.zon'
+      - 'ci/get_version.py'
+      - '.github/workflows/draft-release.yml'
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.zig'
+      - '**/build.zig.zon'
+      - 'ci/get_version.py'
+      - '.github/workflows/draft-release.yml'
 
 permissions:
   contents: write
@@ -21,9 +38,11 @@ jobs:
       - name: Fetch version from build.zig.zon
         id: fetch_version
         run: |
+          python ci/get_version.py
           echo version=$(python ci/get_version.py) >> $GITHUB_OUTPUT
 
       - name: Release
+        if: ${{ !contains(fromJSON('["push", "pull_request"]'), github.event_name) }}
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.fetch_version.outputs.version }}
