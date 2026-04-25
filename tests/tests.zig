@@ -84,3 +84,31 @@ test "DefaultHashMap with unmanaged array list" {
     try expectEqualDeep(&[_]u8{ 3, 5 }, map.get(2).items);
     try expectEqualDeep(&[_]u8{ 0, 1, 4 }, map.get(3).items);
 }
+
+test "DefaultHashMap with string keys and values" {
+    const EmptyArrayListFactory = struct {
+        fn produce(_: @This()) ArrayListUnmanaged([]const u8) {
+            return .empty;
+        }
+    };
+
+    var map = collections.DefaultHashMap(
+        []const u8,
+        ArrayListUnmanaged([]const u8),
+        EmptyArrayListFactory{},
+        EmptyArrayListFactory.produce,
+    ).init(allocator);
+
+    defer map.deinitUnmanaged(allocator);
+
+    const array = [_][]const u8{ "alpha", "alice", "beta", "bravo", "bob", "charlie" };
+    for (array) |item| {
+        // Group values by the first letter
+        const group = item[0..1];
+        try map.get(group).append(allocator, item);
+    }
+
+    try expectEqualDeep(&[_][]const u8{ "alpha", "alice" }, map.get("a").items);
+    try expectEqualDeep(&[_][]const u8{ "beta", "bravo", "bob" }, map.get("b").items);
+    try expectEqualDeep(&[_][]const u8{"charlie"}, map.get("c").items);
+}
