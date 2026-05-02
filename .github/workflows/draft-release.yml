@@ -43,7 +43,7 @@ jobs:
 
       - name: Release
         if: ${{ !contains(fromJSON('["push", "pull_request"]'), github.event_name) }}
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.fetch_version.outputs.version }}
           draft: true
