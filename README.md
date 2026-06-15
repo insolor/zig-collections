@@ -23,7 +23,7 @@ Supported zig versions:
     zig fetch --save https://github.com/insolor/zig-collections/archive/refs/tags/0.0.2.zip
     ```
 
-    Replace `main` in the URL with the tag you want to use.
+    Replace `0.0.2` in the URL with the tag you want to use.
 
 2. Add zig_collections as a dependency module in your `build.zig` file, example:
 
