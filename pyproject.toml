@@ -10,5 +10,5 @@ dependencies = [
     "mkdocs-minify-plugin>=0.8.0",
     "mkdocstrings>=1.0.4",
     "mkdocstrings-zig>=0.0.7",
-    "typing-extensions>=4.14.1",
+    "typing-extensions>=4.16.0",
 ]
