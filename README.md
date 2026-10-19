@@ -14,6 +14,7 @@ Supported zig versions:
 | 0.15.1  | ✅      |
 | 0.15.2  | ✅      |
 | 0.16.0  | ✅      |
+| 0.17.0  | ✅      |
 
 ## Installation
 
